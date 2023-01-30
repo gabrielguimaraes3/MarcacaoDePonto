@@ -19,14 +19,14 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpGet("pontoListar")]
+        [HttpGet("ponto")]
         public IActionResult Listar([FromQuery] string? id)
         {
             return StatusCode(200, _pontoServices.Listar(id));
         }
 
         [Authorize(Roles = "1,2,3")]
-        [HttpPost("pontoInsert")]
+        [HttpPost("ponto")]
         public IActionResult Inserir([FromQuery] Ponto ponto)
         {
             try
@@ -45,7 +45,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpDelete("pontoDelete")]
+        [HttpDelete("ponto")]
         public IActionResult Apagar([FromQuery] double id)
         {
             try
@@ -66,7 +66,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpPut("pontoAtualizar")]
+        [HttpPut("ponto")]
         public IActionResult Atualizar([FromQuery] Ponto ponto)
         {
             try

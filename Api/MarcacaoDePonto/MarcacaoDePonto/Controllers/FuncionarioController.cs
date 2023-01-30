@@ -18,14 +18,14 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "1,2,3")]
-        [HttpGet("funcionarioListar")]
+        [HttpGet("funcionario")]
         public IActionResult Listar([FromQuery] string? descricao)
         {
             return StatusCode(200, _services.Listar(descricao));
         }
 
         [Authorize(Roles = "2")]
-        [HttpPost("funcionarioInsert")]
+        [HttpPost("funcionario")]
         public IActionResult Inserir([FromQuery] Funcionario funcionario)
         {
             try
@@ -44,7 +44,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpDelete("funcionarioDelete")]
+        [HttpDelete("funcionario")]
         public IActionResult Apagar([FromQuery] int cpf)
         {
             try
@@ -65,7 +65,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpPut("funcionarioAtualizar")]
+        [HttpPut("funcionario")]
         public IActionResult Atualizar([FromQuery] Funcionario funcionario)
         {
             try

@@ -21,14 +21,14 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "1,2,3")]
-        [HttpGet("liderancasListar")]
+        [HttpGet("liderancas")]
         public IActionResult Listar([FromQuery] string? descricao)
         {
             return StatusCode(200, _liderancasService.Listar(descricao));
         }
 
         [Authorize(Roles = "2")]
-        [HttpPost("liderancasInsert")]
+        [HttpPost("liderancas")]
         public IActionResult Inserir([FromQuery] Lideranca lideranca)
         {
             try
@@ -47,7 +47,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpDelete("liderancasDelete")]
+        [HttpDelete("liderancas")]
 
         [Authorize(Roles = "2")]
         public IActionResult Apagar([FromQuery] int liderancaId)
@@ -70,7 +70,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpPut("liderancasAtualizar")]
+        [HttpPut("liderancas")]
         public IActionResult Atualizar([FromQuery] Lideranca lideranca
             )
         {

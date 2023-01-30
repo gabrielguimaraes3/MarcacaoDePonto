@@ -8,7 +8,7 @@ namespace MarcacaoDePonto.Models.Models
 {public enum EnumPermissaoUsuario
     {
         Funcionario = 1,
-        RH = 2,
+        Rh = 2,
         Gerente = 3
     }
     public class Usuario

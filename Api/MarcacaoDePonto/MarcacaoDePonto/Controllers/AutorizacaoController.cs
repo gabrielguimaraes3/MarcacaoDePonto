@@ -32,7 +32,7 @@ namespace MarcacaoDePonto.Controllers
                     Subject = new ClaimsIdentity(new[]
                     {
                         new Claim("Login", usuario.Login),
-                        new Claim(ClaimTypes.Role, EnumPermissaoUsuario.User.ToString()),
+                        new Claim(ClaimTypes.Role, EnumPermissaoUsuario.Rh.GetHashCode().ToString())
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(5),
                     SigningCredentials = new SigningCredentials

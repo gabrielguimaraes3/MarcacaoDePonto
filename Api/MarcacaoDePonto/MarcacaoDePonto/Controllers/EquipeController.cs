@@ -19,14 +19,14 @@ namespace MarcacaoDePonto.Controllers
 
 
         [Authorize(Roles = "1,2,3")]
-        [HttpGet("equipeListar")]
+        [HttpGet("equipe")]
         public IActionResult Listar([FromQuery] int Id)
         {
             return StatusCode(200, _equipeService.Listar(Id));
         }
 
         [Authorize(Roles = "2")]
-        [HttpPost("equipeInserir")]
+        [HttpPost("equipe")]
         public IActionResult Inserir([FromQuery] Equipe equipe)
         {
             try
@@ -45,7 +45,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpDelete("equipeDeletar")]
+        [HttpDelete("equipe")]
         public IActionResult Deletar([FromQuery] int equipeExiste)
         {
             try
@@ -64,7 +64,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpPut("equipeAtualizar")]
+        [HttpPut("equipe")]
         public IActionResult Atualizar([FromQuery] Equipe model)
         {
             try

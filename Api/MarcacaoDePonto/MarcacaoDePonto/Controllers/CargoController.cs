@@ -19,14 +19,14 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "1,2,3")]
-        [HttpGet("cargosListar")]
+        [HttpGet("cargos")]
         public IActionResult Listar([FromQuery] string? nome)
         {
             return StatusCode(200, _cargoServices.Listar(nome));
         }
 
         [Authorize(Roles = "2")]
-        [HttpPost("cargoInsert")]
+        [HttpPost("cargo")]
         public IActionResult Inserir([FromQuery] Cargo cargo)
         {
             try
@@ -45,7 +45,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpDelete("cargoDelete")]
+        [HttpDelete("cargo")]
         public IActionResult Apagar([FromQuery] Cargo cargo)
         {
             try
@@ -66,7 +66,7 @@ namespace MarcacaoDePonto.Controllers
         }
 
         [Authorize(Roles = "2")]
-        [HttpPut("cargoAtualizar")]
+        [HttpPut("cargo")]
         public IActionResult Atualizar([FromQuery] Cargo cargo)
         {
             try
