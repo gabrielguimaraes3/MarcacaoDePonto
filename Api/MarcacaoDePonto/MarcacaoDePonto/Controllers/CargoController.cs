@@ -2,8 +2,10 @@
 using MarcacaoDePonto.Models.Exeption;
 using MarcacaoDePonto.Models.Models;
 using MarcacaoDePonto.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace MarcacaoDePonto.Controllers
 {
@@ -15,12 +17,15 @@ namespace MarcacaoDePonto.Controllers
         {
             _cargoServices = new CargoServices();
         }
+
+        [Authorize(Roles = "1,2,3")]
         [HttpGet("cargosListar")]
         public IActionResult Listar([FromQuery] string? nome)
         {
             return StatusCode(200, _cargoServices.Listar(nome));
         }
 
+        [Authorize(Roles = "2")]
         [HttpPost("cargoInsert")]
         public IActionResult Inserir([FromQuery] Cargo cargo)
         {
@@ -39,6 +44,7 @@ namespace MarcacaoDePonto.Controllers
             }
         }
 
+        [Authorize(Roles = "2")]
         [HttpDelete("cargoDelete")]
         public IActionResult Apagar([FromQuery] Cargo cargo)
         {
@@ -59,6 +65,7 @@ namespace MarcacaoDePonto.Controllers
 
         }
 
+        [Authorize(Roles = "2")]
         [HttpPut("cargoAtualizar")]
         public IActionResult Atualizar([FromQuery] Cargo cargo)
         {

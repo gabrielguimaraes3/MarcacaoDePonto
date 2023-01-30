@@ -1,6 +1,7 @@
 ﻿using MarcacaoDePonto.Models.Exeption;
 using MarcacaoDePonto.Models.Models;
 using MarcacaoDePonto.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +17,14 @@ namespace MarcacaoDePonto.Controllers
             _services = new FuncionarioServices();
         }
 
+        [Authorize(Roles = "1,2,3")]
         [HttpGet("funcionarioListar")]
         public IActionResult Listar([FromQuery] string? descricao)
         {
             return StatusCode(200, _services.Listar(descricao));
         }
 
+        [Authorize(Roles = "2")]
         [HttpPost("funcionarioInsert")]
         public IActionResult Inserir([FromQuery] Funcionario funcionario)
         {
@@ -40,6 +43,7 @@ namespace MarcacaoDePonto.Controllers
             }
         }
 
+        [Authorize(Roles = "2")]
         [HttpDelete("funcionarioDelete")]
         public IActionResult Apagar([FromQuery] int cpf)
         {
@@ -60,6 +64,7 @@ namespace MarcacaoDePonto.Controllers
 
         }
 
+        [Authorize(Roles = "2")]
         [HttpPut("funcionarioAtualizar")]
         public IActionResult Atualizar([FromQuery] Funcionario funcionario)
         {

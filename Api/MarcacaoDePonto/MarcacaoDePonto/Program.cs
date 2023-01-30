@@ -38,8 +38,9 @@ namespace MarcacaoDePonto
                     (Encoding.UTF8.GetBytes(builder.Configuration["SenhaJwt"])),
                     ValidateIssuer = false,
                     ValidateAudience = false,
-                    ValidateLifetime = false,
-                    ValidateIssuerSigningKey = true
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ClockSkew = TimeSpan.Zero
                 };
             });
             builder.Services.AddAuthorization();

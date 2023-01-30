@@ -1,8 +1,10 @@
 ﻿using MarcacaoDePonto.Models.Exeption;
 using MarcacaoDePonto.Models.Models;
 using MarcacaoDePonto.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace MarcacaoDePonto.Controllers
 {
@@ -15,12 +17,15 @@ namespace MarcacaoDePonto.Controllers
         {
             _pontoServices = new PontoServices();
         }
+
+        [Authorize(Roles = "2")]
         [HttpGet("pontoListar")]
         public IActionResult Listar([FromQuery] string? id)
         {
             return StatusCode(200, _pontoServices.Listar(id));
         }
 
+        [Authorize(Roles = "1,2,3")]
         [HttpPost("pontoInsert")]
         public IActionResult Inserir([FromQuery] Ponto ponto)
         {
@@ -39,6 +44,7 @@ namespace MarcacaoDePonto.Controllers
             }
         }
 
+        [Authorize(Roles = "2")]
         [HttpDelete("pontoDelete")]
         public IActionResult Apagar([FromQuery] double id)
         {
@@ -59,6 +65,7 @@ namespace MarcacaoDePonto.Controllers
 
         }
 
+        [Authorize(Roles = "2")]
         [HttpPut("pontoAtualizar")]
         public IActionResult Atualizar([FromQuery] Ponto ponto)
         {

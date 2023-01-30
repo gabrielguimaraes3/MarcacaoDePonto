@@ -1,8 +1,10 @@
 ﻿using MarcacaoDePonto.Models.Exeption;
 using MarcacaoDePonto.Models.Models;
 using MarcacaoDePonto.Services.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace MarcacaoDePonto.Controllers
 {
@@ -15,12 +17,15 @@ namespace MarcacaoDePonto.Controllers
             _equipeService = new EquipeService();
         }
 
+
+        [Authorize(Roles = "1,2,3")]
         [HttpGet("equipeListar")]
         public IActionResult Listar([FromQuery] int Id)
         {
             return StatusCode(200, _equipeService.Listar(Id));
         }
 
+        [Authorize(Roles = "2")]
         [HttpPost("equipeInserir")]
         public IActionResult Inserir([FromQuery] Equipe equipe)
         {
@@ -39,6 +44,7 @@ namespace MarcacaoDePonto.Controllers
             }
         }
 
+        [Authorize(Roles = "2")]
         [HttpDelete("equipeDeletar")]
         public IActionResult Deletar([FromQuery] int equipeExiste)
         {
@@ -57,6 +63,7 @@ namespace MarcacaoDePonto.Controllers
             }
         }
 
+        [Authorize(Roles = "2")]
         [HttpPut("equipeAtualizar")]
         public IActionResult Atualizar([FromQuery] Equipe model)
         {
